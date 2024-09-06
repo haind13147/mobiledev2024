@@ -11,11 +11,6 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ForecastFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ForecastFragment extends Fragment {
     // Fragment initialization parameters
     private static final String ARG_PARAM1 = "param1";
@@ -49,34 +44,56 @@ public class ForecastFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Create a new LinearLayout
-        LinearLayout layout = new LinearLayout(getActivity());
-        layout.setOrientation(LinearLayout.VERTICAL);
-        layout.setLayoutParams(new LinearLayout.LayoutParams(
+        // Create a LinearLayout for the forecast area
+        LinearLayout forecastLayout = new LinearLayout(getActivity());
+        forecastLayout.setOrientation(LinearLayout.VERTICAL);
+        forecastLayout.setLayoutParams(new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT
         ));
-        layout.setBackgroundColor(Color.parseColor("#20FF0000")); // Background color
 
-        // Create a TextView for the day
-        TextView textView = new TextView(getActivity());
-        textView.setText("Thursday");
-        textView.setTextSize(20);
-        textView.setTextColor(Color.BLACK);
+        // Set the background color to blue
+        forecastLayout.setBackgroundColor(Color.parseColor("#ADD8E6")); // Light Blue color
 
-        // Create an ImageView for the weather icon
-        ImageView imageView = new ImageView(getActivity());
-        imageView.setImageResource(R.drawable.weather); // Replace with your weather icon
-        imageView.setLayoutParams(new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-        ));
+        // Example forecast content for one day
+        for (int i = 0; i < 7; i++) {
+            // Create a horizontal LinearLayout for each day (date + weather icon)
+            LinearLayout dayLayout = new LinearLayout(getActivity());
+            dayLayout.setOrientation(LinearLayout.HORIZONTAL);
+            dayLayout.setPadding(16, 16, 16, 16);  // Add padding for better spacing
+            dayLayout.setLayoutParams(new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+            ));
 
-        // Add the TextView and ImageView to the layout
-        layout.addView(textView);
-        layout.addView(imageView);
+            // Create a TextView for the day
+            TextView dayTextView = new TextView(getActivity());
+            dayTextView.setText("Day " + (i + 1)); // Example: Day 1, Day 2, etc.
+            dayTextView.setTextSize(18);
+            dayTextView.setTextColor(Color.BLACK);
+            dayTextView.setLayoutParams(new LinearLayout.LayoutParams(
+                    0,
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    1.0f // Weight to evenly distribute space
+            ));
 
-        // Return the layout as the fragment's view
-        return layout;
+            // Create an ImageView for the weather icon
+            ImageView weatherIcon = new ImageView(getActivity());
+            weatherIcon.setImageResource(R.drawable.weather_sunny);  // Replace with your weather icon resource
+            weatherIcon.setLayoutParams(new LinearLayout.LayoutParams(
+                    100,
+                    100
+            ));
+
+            // Add the TextView and ImageView to the horizontal layout
+            dayLayout.addView(dayTextView);
+            dayLayout.addView(weatherIcon);
+
+            // Add the day layout to the forecast layout
+            forecastLayout.addView(dayLayout);
+        }
+
+        // Return the forecast layout as the fragment's view
+        return forecastLayout;
     }
 }
