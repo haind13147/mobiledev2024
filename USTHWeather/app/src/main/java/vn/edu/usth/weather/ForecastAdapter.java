@@ -5,57 +5,74 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ForecastViewHolder> {
 
-    private String[] days;
-    private String[] descriptions;
-    private String[] temperatures;
-    private int[] weatherIcons;
+    // Number of forecast days
+    private static final int NUM_DAYS = 7;
 
-    public ForecastAdapter(String[] days, String[] descriptions, String[] temperatures, int[] weatherIcons) {
-        this.days = days;
-        this.descriptions = descriptions;
-        this.temperatures = temperatures;
-        this.weatherIcons = weatherIcons;
-    }
+    // Sample data for weather conditions (replace with real data later)
+    private String[] weatherConditions = {"Sunny", "Rainy", "Stormy", "Cloudy", "Sunny", "Rainy", "Sunny"};
+    private int[] temperatures = {20, 22, 18, 19, 23, 21, 24};
+    private int[] windSpeeds = {10, 15, 20, 12, 8, 11, 5};  // Wind speed in km/h
+    private int[] humidities = {50, 60, 80, 55, 40, 65, 45}; // Humidity percentage
 
     @NonNull
     @Override
     public ForecastViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_forecast, parent, false);
+        // Inflate a view for each forecast day
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.forecast_day_item, parent, false);
         return new ForecastViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ForecastViewHolder holder, int position) {
-        holder.textViewDay.setText(days[position]);
-        holder.textViewDescription.setText(descriptions[position]);
-        holder.textViewTemperature.setText(temperatures[position]);
-        holder.imageViewWeatherIcon.setImageResource(weatherIcons[position]);
+        // Set the day, temperature, and weather conditions
+        holder.dayTextView.setText("Day " + (position + 1));
+        holder.tempTextView.setText("Temp: " + temperatures[position] + "°C");
+        holder.windTextView.setText("Wind: " + windSpeeds[position] + " km/h");
+        holder.humidityTextView.setText("Humidity: " + humidities[position] + "%");
+
+        // Set weather icon based on condition
+        switch (weatherConditions[position]) {
+            case "Sunny":
+                holder.weatherIcon.setImageResource(R.drawable.weather_sunny);
+                break;
+            case "Rainy":
+                holder.weatherIcon.setImageResource(R.drawable.weather_rain);
+                break;
+            case "Stormy":
+                holder.weatherIcon.setImageResource(R.drawable.weather_storm);
+                break;
+            // Add more conditions as needed
+            default:
+                holder.weatherIcon.setImageResource(R.drawable.weather);
+                break;
+        }
     }
 
     @Override
     public int getItemCount() {
-        return days.length;
+        return NUM_DAYS;  // Return number of forecast days
     }
 
-    public static class ForecastViewHolder extends RecyclerView.ViewHolder {
+    static class ForecastViewHolder extends RecyclerView.ViewHolder {
+        TextView dayTextView;
+        TextView tempTextView;
+        TextView windTextView;
+        TextView humidityTextView;
+        ImageView weatherIcon;
 
-        TextView textViewDay;
-        TextView textViewDescription;
-        TextView textViewTemperature;
-        ImageView imageViewWeatherIcon;
-
-        public ForecastViewHolder(@NonNull View itemView) {
+        ForecastViewHolder(View itemView) {
             super(itemView);
-            textViewDay = itemView.findViewById(R.id.textView_day);
-            textViewDescription = itemView.findViewById(R.id.textView_weather_description);
-            textViewTemperature = itemView.findViewById(R.id.textView_temperature);
-            imageViewWeatherIcon = itemView.findViewById(R.id.imageView_weather_icon);
+            dayTextView = itemView.findViewById(R.id.dayTextView);
+            tempTextView = itemView.findViewById(R.id.tempTextView);
+            windTextView = itemView.findViewById(R.id.windTextView);
+            humidityTextView = itemView.findViewById(R.id.humidityTextView);
+            weatherIcon = itemView.findViewById(R.id.weatherIcon);
         }
     }
 }

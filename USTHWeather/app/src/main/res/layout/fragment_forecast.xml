@@ -3,11 +3,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@android:color/white">
+    android:background="#e6e6fa"
+    android:padding="16dp">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_forecast"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp" />
+    <!-- RecyclerView wrapped in CardView or LinearLayout for padding and corner effect -->
+<LinearLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:orientation="vertical"
+android:padding="16dp"
+android:background="@drawable/rounded_forecast_background"
+android:elevation="4dp">
+
+<androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/recycler_view_forecast"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp" />
 </LinearLayout>
+    </LinearLayout>
