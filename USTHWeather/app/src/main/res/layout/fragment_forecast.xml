@@ -6,7 +6,6 @@
     android:background="#e6e6fa"
     android:padding="16dp">
 
-    <!-- RecyclerView wrapped in CardView or LinearLayout for padding and corner effect -->
 <LinearLayout
 android:layout_width="match_parent"
 android:layout_height="wrap_content"
