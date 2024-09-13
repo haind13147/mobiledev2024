@@ -10,10 +10,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ForecastViewHolder> {
 
-    // Number of forecast days
     private static final int NUM_DAYS = 7;
 
-    // data for weather conditions
     private String[] weatherConditions = {"Sunny", "Rainy", "Stormy", "Cloudy", "Sunny", "Rainy", "Sunny"};
     private int[] temperatures = {20, 22, 18, 19, 23, 21, 24};
     private int[] windSpeeds = {10, 15, 20, 12, 8, 11, 5};  // Wind speed in km/h
@@ -22,7 +20,7 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
     @NonNull
     @Override
     public ForecastViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // each forecast day
+
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.forecast_day_item, parent, false);
         return new ForecastViewHolder(view);
