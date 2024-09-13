@@ -7,40 +7,13 @@
     android:layout_height="match_parent"
     tools:context=".WeatherActivity">
 
-    <FrameLayout
-        android:id="@+id/container"
-        android:layout_width="398dp"
-        android:layout_height="766dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="1dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </FrameLayout>
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/weatherViewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- Weather Fragment (green area) -->
-        <fragment
-            android:id="@+id/fragment_weather"
-            android:name="vn.edu.usth.weather.WeatherFragment"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-        android:background="@android:color/holo_green_light" />
-
-        <!-- Forecast Fragment -->
-        <fragment
-            android:id="@+id/fragment_forecast"
-            android:name="vn.edu.usth.weather.ForecastFragment"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

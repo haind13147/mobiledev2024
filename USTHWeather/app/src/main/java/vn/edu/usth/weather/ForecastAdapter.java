@@ -22,7 +22,7 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
     @NonNull
     @Override
     public ForecastViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // Inflate a view for each forecast day
+        // each forecast day
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.forecast_day_item, parent, false);
         return new ForecastViewHolder(view);
@@ -30,13 +30,11 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
 
     @Override
     public void onBindViewHolder(@NonNull ForecastViewHolder holder, int position) {
-        // Set the day, temperature, and weather conditions
         holder.dayTextView.setText("Day " + (position + 1));
         holder.tempTextView.setText("Temp: " + temperatures[position] + "°C");
         holder.windTextView.setText("Wind: " + windSpeeds[position] + " km/h");
         holder.humidityTextView.setText("Humidity: " + humidities[position] + "%");
 
-        // Set weather icon based on condition
         switch (weatherConditions[position]) {
             case "Sunny":
                 holder.weatherIcon.setImageResource(R.drawable.weather_sunny);
@@ -47,7 +45,6 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
             case "Stormy":
                 holder.weatherIcon.setImageResource(R.drawable.weather_storm);
                 break;
-            // Add more conditions as needed
             default:
                 holder.weatherIcon.setImageResource(R.drawable.weather);
                 break;
@@ -56,7 +53,7 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
 
     @Override
     public int getItemCount() {
-        return NUM_DAYS;  // Return number of forecast days
+        return NUM_DAYS;
     }
 
     static class ForecastViewHolder extends RecyclerView.ViewHolder {

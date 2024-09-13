@@ -4,7 +4,7 @@ public class ForecastItem {
     private String day;
     private String description;
     private String tempRange;
-    private int weatherIcon;  // Resource ID of the weather icon
+    private int weatherIcon;
 
     public ForecastItem(String day, String description, String tempRange, int weatherIcon) {
         this.day = day;
